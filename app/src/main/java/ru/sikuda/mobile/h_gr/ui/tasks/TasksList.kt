@@ -44,16 +44,17 @@ fun TasksList(name: String?, onNavigation: () -> Unit) {
         items(items.size) { it ->
             Item(
                 items[it],
-                onClicked = { OnClickTaskItem(context, items[it].id) },
+                onClicked = { onNavigation() //OnClickTaskItem(context, items[it].id)
+                     },
             )
             Divider()
         }
     }
 }
 
-fun OnClickTaskItem(context: Context, id: Long) {
-    Toast.makeText(context, "Click $id", Toast.LENGTH_SHORT).show()
-}
+//fun OnClickTaskItem(context: Context, id: Long) {
+//    Toast.makeText(context, "Click $id", Toast.LENGTH_SHORT).show()
+//}
 
 @Composable
 private fun Item(

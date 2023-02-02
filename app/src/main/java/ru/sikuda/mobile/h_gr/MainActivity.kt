@@ -29,6 +29,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import kotlinx.coroutines.launch
+import ru.sikuda.mobile.h_gr.ui.tasks.TasksDetail
 import ru.sikuda.mobile.h_gr.ui.tasks.TasksList
 import ru.sikuda.mobile.h_gr.ui.theme.H_grTheme
 
@@ -111,25 +112,24 @@ fun MyNavHost(navHostController: NavHostController, paddingValues: PaddingValues
                 navHostController.navigate("${NavRoute.TASKS}/Common tasks")
             }
         }
-        composable(
-            routeTasks, arguments = listOf(navArgument(name = "argument") {})
+        composable(routeTasks, arguments = listOf(navArgument(name = "argument") {})
         ) { navEntry ->
             TasksList(navEntry.arguments?.getString("argument")) {
-                navHostController.navigate("${NavRoute.TASKS}/false")
+                navHostController.navigate("${NavRoute.TASK_DETAIL}/false")
             }
         }
-//        composable(
-//            routeWithArgumentsC,
-//            arguments = listOf(navArgument("visible"){
-//                type = NavType.BoolType
-//            }),
-//        ){
-//            ScreenC(it.arguments?.getBoolean("visible")){
-//                navHostController.navigate(NavRoute.HOME){
-//                    popUpTo(NavRoute.HOME){inclusive = true}
-//                }
-//            }
-//        }
+        composable(routeTaskDetail,
+            arguments = listOf(navArgument("visible"){
+                type = NavType.BoolType
+            }),
+        ){
+            TasksDetail(name = "test") {
+
+                    navHostController.navigate(NavRoute.HOME){
+                    popUpTo(NavRoute.HOME){inclusive = true}
+                }
+            }
+        }
 
     }
 }
